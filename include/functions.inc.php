@@ -166,7 +166,7 @@ function s3upload_apply_tag($img_id){
 	$tag_ids = array($tag_id);
 	set_tags($tag_ids, $img_id);	
 }
-function third_party_provider($root_url){$root_url = 'https://piwigo.com/';
+function third_party_provider($root_url){
 	if(strpos($root_url, '//piwigo.com') !== false){
 		return true;
 	}else{
