@@ -3,9 +3,9 @@
 Plugin Name: S3Upload
 Version: 1.0
 Description: Piwigo plugin that uploads gallery photos to an AWS S3 storage account, automatically or by batch selection.
-Plugin URI: http://piwigo.org/ext/extension_view.php?eid=TODO
+Plugin URI: http://piwigo.org/ext/extension_view.php?eid=691
 Author: Micah Wittman
-Author URI: http://wittman.org, https://github.com/wittman
+Author URI: http://wittman.org
 */
 
 /**
