@@ -24,6 +24,7 @@ Photos added while Active Monitoring is disabled will not be queued/uploaded whe
 
 ## Requirements:
 
+- Piwigo Version 2.5.0
 - In the S3Upload plugin Configuration tab:
 - Enter your Amazon Web Services (AWS) S3 storage bucket name.
 - Enter AWS access key.
