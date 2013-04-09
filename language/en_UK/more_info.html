@@ -1,0 +1,96 @@
+<h4>S3Upload Plugin - What Does It Do, Exactly?</h4>
+
+<p>
+	<strong><em>The short answer</em></strong>: When a photo is added to your Piwigo gallery, S3Upload plugin uploads the (full size) image to your Amazon S3 account, and when viewing an individual photo a download link to the S3 image is provided.
+</p>
+<p>
+	<strong><em>The long answer</em></strong>: When a photo is added to your Piwigo gallery (your database table holding the index of images is updated), S3Upload queues those newly added photos to be processed for uploading a full-size copy to your configured Amazon S3 bucket of choice. 
+</p>
+<p>
+	When a queued image is confirmed successfully uploaded to S3, it is cleared from an index of queued files pending upload.
+</p>
+<p>
+	Any upload transfer attempts that fail are displayed in the "10 Most Recent Pending Uploads to S3" table in this tab. The status column indicates the error code. Common problems: 'failed_code_0' likely means bad AWS bucket or location constraint. 'failed_code_403' likely means bad AWS key and/or password. 'failed_code_404' likely means bad bucket.
+</p>
+<p>
+	Once a bad configuration is corrected, the previously failed uploads should succeed and the failure records in the Pending table will clear and the (last 10) uploads will appear in the Success table.
+</p>
+<p>
+	Each S3 uploaded photo will (optional) have a download link in the Piwigo photo display info box.
+</p>
+<p>
+	<strong>2 methods</strong> of photo uploading are provided. Method 1#: Active Monitoring (while enabled) will queue and upload every photo that's added to the gallery *AFTER* the installation of the S3Upload plugin. Method #2: the Piwigo Batch Manager will have an S3Upload command in the dropdown&mdash;it queues for uploading files selected in the Batch Manager. The Batch manager method can be used to S3 upload photos that were added to gallery before the plugin was installed.
+</p>
+<p>Photos added while Active Monitoring is disabled will not be queued/uploaded when monitoring is re-enabled. Use Batch Manager method to select any photos to be S3 uploaded.</p>
+<p>
+	<strong><em>Requirements:</em></strong><br>
+</p>
+<ul>
+	<li>- In the S3Upload plugin Configuration tab:</li>
+	<li>
+		<ul>
+			<li>- Enter your Amazon Web Services (AWS) S3 storage bucket name.</li>
+			<li>- Enter AWS access key.</li>
+			<li>- Enter AWS secret key.</li>
+		</ul>
+	</li>
+	<li>- If you are not familiar with the AWS service, be aware that typically Amazon charges (fraction of a penny) for every file transfer and for file storage per period of time, and other requests. As of this writing there is an <a href="http://aws.amazon.com/free/" target="_blank">AWS free tier offering</a> (<small>5 GB of Amazon S3 standard storage, 20,000 Get Requests, and 2,000 Put Requests</small>)</li>
+		
+</ul>
+
+<p>
+	<strong><em>Limitations:</em></strong><br>
+</p>
+<ul>
+	<li>- S3 Uploads Are One-time / One-way</li>
+	<ul>
+		<li>- Once a photo is queued and uploaded, edits, or any other changes to the image stored in Piwigo *do not* affect the S3 image.</li>
+		<li>- Deleting a photo from Piwigo *does not* remove or affect the S3 image in any way.</li>
+		<li>- Any image uploaded more than once to the same location (AWS account + bucket + bucket path + file name [per config setting]) will *not* be re-uploaded / over-written.
+		</li>
+	</ul>
+</ul>
+
+<p>
+	<strong><em>Notes:</em></strong><br>
+</p>
+<ul>
+	<li>
+		- If the <em><small>Prevent duplicate uploads (by md5 hash)</small></em> S3Upload option is enabled, the plugin will not S3 upload an image that is pixel for pixel a duplicate of a previously queued/uploaded image (regardless of the S3 location of the existing upload).
+	</li>
+</ul>
+
+<div class="hr"></div>
+
+<h4>AWS Bucket</h4>
+<p>
+	The bucket to storage copy of photo uploads to Piwigo. (you can create a new one just for Piwigo photos or use an existing one.
+</p>
+<p>
+	<em>Examples:</em>
+</p>
+<p><pre>photos.mydomain.com, piwigo_originals, photography</pre></p>
+<div class="hr"></div>
+
+
+<h4>AWS Bucket Path</h4>
+<p>
+	The bucket path used as the AWS file key for storing a copy of each photo upload. This is the base path used for S3 (option: <small>Add Timestamp/Unique to Path/File for S3 Image Location</small>, under S3Upload Configuration tab, adds a subpath to the base path per image.
+</p>
+<p>
+	<em>Examples:</em>
+</p>
+<p><pre>i/, images/, piwigo/photos/originals/</pre></p>
+<p>
+	If left blank then the root of the bucket is used for file storage (unless augmented by <small>Add Timestamp/Unique to Path/File for S3 Image Location</small> option).
+</p>
+<div class="hr"></div>
+
+<h4>Licensing / Credits</h4>
+<p>
+	Special thanks to the Piwigo team / extension developer community, especially J.Commelin and mistic100, for the <a href="http://piwigo.org/ext/extension_view.php?eid=543">Skeleton plugin</a> (scaffolding code to build new plugins), upon which this S3Upload was bootstrapped.
+</p>
+<p>
+	Copyright (c) 2013 Micah Wittman &lt;<a href="http://wittman.org">wittman.org</a>&gt;<br>
+	Dual licensed under the MIT and GPL licenses.
+</p>

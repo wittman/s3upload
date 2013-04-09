@@ -1,0 +1,45 @@
+.showInfo {
+  position:static;
+  display:inline-block;
+  padding:1px 6px;
+  width:4px;
+  height:14px;
+  line-height:14px;
+  font-size:0.8em;
+}
+
+.square-list {
+  list-style:square !important;
+  margin-left:35px !important;
+}
+.square-list li {
+    margin-bottom:0 !important;
+}
+
+#s3upload_config_form .hr, #s3upload_home_more_info .hr {
+	height: 2em;
+	border-bottom:solid rgb(220,220,220) 1px;
+	margin: 8px 8px 8px 10%;
+}
+
+
+#s3upload_config_form small {
+	font-weight:normal;
+
+}
+
+#s3upload_config_form li {
+	line-height: 1.4em;
+}
+
+#s3upload_config_form .required {
+	color:red;
+}
+
+#s3upload_home_more_info pre, #s3upload_home_more_info ul {
+	margin-left: 2em;
+}
+
+.s3upload_bucket_path_component {
+	color: rgb(153,101,21);
+}
