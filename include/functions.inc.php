@@ -1,6 +1,14 @@
 <?php
 defined('S3UPLOAD_PATH') or die('Hacking attempt!');
-
+function s3upload_log($text,  $file=__FILE__, $func=__FUNCTION__, $line=__LINE__){
+	#s3upload_log("pathArr: ".print_r($pathArr), __FILE__, __FUNCTION__, __LINE__);
+	$filename = PHPWG_ROOT_PATH.'__log.txt';
+	$expected_path = '/Applications/MAMP/htdocs/piwigo/plugins/s3upload/';
+	if(strpos($file, $expected_path) !== false){
+		$file = str_replace($expected_path, '', $file);
+	}
+	file_put_contents($filename, " [$file]"." $func()"." ($line)"." $text".PHP_EOL.PHP_EOL, FILE_APPEND);
+}
 function s3upload_guess_mime_type($ext){
 	switch( strtolower($ext) ){
 		case "jpe": case "jpeg":
@@ -69,10 +77,8 @@ WHERE id='$id' LIMIT 1;
 	list($path) = pwg_db_fetch_row(pwg_query($query));
 	return $path;
 }
-function s3upload_timestamp_filename($fileName, $img_id, $format, $is_ftp=false){
+function s3upload_timestamp_filename($fileName, $img_id, $format){
 	// Example: "./upload/2013/03/31/20130331013511-5d467604.jpg"
-	if($format == 'none') return $fileName;
-	
 	$path = s3upload_get_img_path($img_id);
 	
 	//Check if galleries (FTP) path
@@ -86,6 +92,9 @@ function s3upload_timestamp_filename($fileName, $img_id, $format, $is_ftp=false)
 	}
 
 	switch($format){
+		case 'none':
+			return $fileName;
+			break;
 		case 'path':
 			preg_match('#^\.\/\w+/\d+\/\d+\/\d+/#', $path.$fileName, $matches);
 			return substr($matches[0], 2).$fileName; //remove ./ at start
