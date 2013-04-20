@@ -61,7 +61,7 @@ function s3upload_element_set_global_action($action, $collection){
 			if($prevent_dups){
 				$query = "
 SELECT i.id AS id, i.file AS file, i.path AS path, i.md5sum AS md5sum
-FROM ".IMAGES_TABLE."
+FROM ".IMAGES_TABLE." i
 WHERE i.id IN (" . implode(',', $collection) . ") ".$sqlWhereMd5."
 ";
 			}else{
@@ -94,9 +94,9 @@ WHERE id IN (" . implode(',', $collection) . ")
 			mass_inserts(S3UPLOAD_TABLE, $dbfields, $inserts);
 			$countMsg = '';
 			if($record_count == 0) {
-				 $countMsg = '<br><br>' . sprintf(l10n('No selected records were queued for upload because option %s<em>Prevent duplicate uploads (by md5 hash)</em>%s is checked and matching hash(es) were found.<br><br> See %sRecent Activity%s for progress.<br><br>'), '<a href="admin.php?page=plugin-s3upload-config">', '</a>', '<a href="admin.php?page=page=plugin-s3upload">', '</a>');
+				 $countMsg = '<br><br>' . sprintf(l10n('No selected records were queued for upload because option %s<em>Prevent duplicate uploads (by md5 hash)</em>%s is checked and matching hash(es) were found.<br><br> See %sRecent Activity%s for progress.<br><br>'), '<a href="admin.php?page=plugin-s3upload-config">', '</a>', '<a href="admin.php?page=plugin-s3upload">', '</a>');
 			}else if ($record_count != count($collection)){
-				$countMsg = '<br><br>' . sprintf(l10n('Not all selected records were queued for upload because option <em>Prevent duplicate uploads (by md5 hash)</em> is checked and matching hash(es) were found.<br><br> See %sRecent Activity%s for progress.<br><br>'), '<a href="admin.php?page=page=plugin-s3upload">', '</a>');
+				$countMsg = '<br><br>' . sprintf(l10n('Not all selected records were queued for upload because option <em>Prevent duplicate uploads (by md5 hash)</em> is checked and matching hash(es) were found.<br><br> See %sRecent Activity%s for progress.<br><br>'), '<a href="admin.php?page=plugin-s3upload">', '</a>');
 			}
 			array_push($page['infos'], '(' . $record_count . ') ' . l10n('Queued for S3 Upload.') . $countMsg);
 		}

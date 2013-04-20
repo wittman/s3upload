@@ -1,4 +1,4 @@
-# S3Upload Plugin (for [Piwigo](http://piwigo.org) photo gallery)
+# [S3Upload Plugin](http://piwigo.org/ext/extension_view.php?eid=691) (for [Piwigo](http://piwigo.org) photo gallery)
 
 The S3Upload plugin uploads gallery photos to your configured AWS S3 storage account, automatically or by batch selection. 
 
@@ -24,7 +24,7 @@ Photos added while Active Monitoring is disabled will not be queued/uploaded whe
 
 ## Requirements:
 
-- Piwigo Version 2.5.0
+- Piwigo Version 2.5.0 or 2.5.1
 - In the S3Upload plugin Configuration tab:
 - Enter your Amazon Web Services (AWS) S3 storage bucket name.
 - Enter AWS access key.
