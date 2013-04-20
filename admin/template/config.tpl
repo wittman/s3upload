@@ -142,20 +142,25 @@ jQuery(document).ready(function(){
 			<strong>{'Add Path + File Unique'|@translate}</strong><br>
 			<span class="s3upload_bucket_path_component">{$s3upload.aws_bucket}/{$s3upload.aws_bucket_path}</span><em>upload/2013/03/31/20130331013511-5d467604-<strong>IMG_101.jpeg</strong></em><br><br>
 			
+			<strong>{'Add Category Hierarchy'|@translate}</strong><br>
+			<span class="s3upload_bucket_path_component">{$s3upload.aws_bucket}/{$s3upload.aws_bucket_path}</span><em>upload/Animals/Mammals/<strong>IMG_101.jpeg</strong></em><br><br>
+			
 		</small>
 		<div class="hr"></div>
 		</span>
-		<input type="radio" name="s3upload_aws_add_file_name_timestamp" value="none" {if $s3upload.aws_add_file_name_timestamp=='none'}checked="checked"{/if} /> <span>(Don't Add) &nbsp;&nbsp; </span>
+		<input type="radio" name="s3upload_aws_add_file_name_timestamp" value="none" {if $s3upload.aws_add_file_name_timestamp=='none'}checked="checked"{/if} /> <span>{"(Don't Add)"|@translate} &nbsp;&nbsp; </span>
 		<br>
-		<input type="radio" name="s3upload_aws_add_file_name_timestamp" value="path" {if $s3upload.aws_add_file_name_timestamp=='path'}checked="checked"{/if} /> <span>Add Path &nbsp;&nbsp; </span>
+		<input type="radio" name="s3upload_aws_add_file_name_timestamp" value="path" {if $s3upload.aws_add_file_name_timestamp=='path'}checked="checked"{/if} /> <span>{'Add Path'|@translate} &nbsp;&nbsp; </span>
 		<br>
-		<input type="radio" name="s3upload_aws_add_file_name_timestamp" value="file" {if $s3upload.aws_add_file_name_timestamp=='file'}checked="checked"{/if} /> <span>Add File &nbsp;&nbsp; </span>
+		<input type="radio" name="s3upload_aws_add_file_name_timestamp" value="file" {if $s3upload.aws_add_file_name_timestamp=='file'}checked="checked"{/if} /> <span>{'Add File'|@translate} &nbsp;&nbsp; </span>
 		<br>
-		<input type="radio" name="s3upload_aws_add_file_name_timestamp" value="path_and_file" {if $s3upload.aws_add_file_name_timestamp=='path_and_file'}checked="checked"{/if} /> <span>Add Path + File &nbsp;&nbsp; </span>
+		<input type="radio" name="s3upload_aws_add_file_name_timestamp" value="path_and_file" {if $s3upload.aws_add_file_name_timestamp=='path_and_file'}checked="checked"{/if} /> <span>{'Add Path + File'|@translate} &nbsp;&nbsp; </span>
 		<br>
-		<input type="radio" name="s3upload_aws_add_file_name_timestamp" value="file_unique" {if $s3upload.aws_add_file_name_timestamp=='file_unique'}checked="checked"{/if} /> <span>Add File Unique &nbsp;&nbsp; </span>
+		<input type="radio" name="s3upload_aws_add_file_name_timestamp" value="file_unique" {if $s3upload.aws_add_file_name_timestamp=='file_unique'}checked="checked"{/if} /> <span>{'Add File Unique'|@translate} &nbsp;&nbsp; </span>
 		<br>
-		<input type="radio" name="s3upload_aws_add_file_name_timestamp" value="path_and_file_unique" {if $s3upload.aws_add_file_name_timestamp=='path_and_file_unique'}checked="checked"{/if} /> <span>Add Path + File Unique &nbsp;&nbsp; </span>
+		<input type="radio" name="s3upload_aws_add_file_name_timestamp" value="path_and_file_unique" {if $s3upload.aws_add_file_name_timestamp=='path_and_file_unique'}checked="checked"{/if} /> <span>{'Add Path + File Unique'|@translate} &nbsp;&nbsp; </span>
+		<br>
+		<input type="radio" name="s3upload_aws_add_file_name_timestamp" value="cat_hierarchy" {if $s3upload.aws_add_file_name_timestamp=='cat_hierarchy'}checked="checked"{/if} /> <span>{'Add Category Hierarchy'|@translate} &nbsp;&nbsp; </span>
 	</label>
     </li>
 

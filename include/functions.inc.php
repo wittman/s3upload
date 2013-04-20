@@ -77,6 +77,48 @@ WHERE id='$id' LIMIT 1;
 	list($path) = pwg_db_fetch_row(pwg_query($query));
 	return $path;
 }
+function s3upload_get_category_hierarchy($img_id){
+	/*$query = "
+SELECT ic.category_id AS category_id
+FROM ".IMAGES_TABLE." i
+LEFT JOIN ".IMAGE_CATEGORY_TABLE." ic ON i.id = ic.image_id
+WHERE i.id=$img_id
+";*/
+
+	$query = "
+SELECT category_id
+FROM ".IMAGE_CATEGORY_TABLE."
+WHERE image_id=$img_id
+";
+	list($cat_id) = pwg_db_fetch_row(pwg_query($query));
+	
+	$cat_info = get_cat_info($cat_id);
+	$cat_hierarchy = '';
+	foreach($cat_info['upper_names'] as $un){
+		$cat_hierarchy .= $un['name'] . '/';
+	}
+	
+	/*
+	* if(is_array($cat_info['upper_names']) && count > 1){
+
+	}else{
+		$cat_hierarchy = $cat_info['upper_names'][0]['name'];
+	}
+	
+	$query = "
+SELECT uppercats
+FROM ".CATEGORIES_TABLE."
+WHERE id=$cat_id
+;";
+	
+	list($uppercats) = pwg_db_fetch_row(pwg_query($query));
+	
+	$uppercatsArr = explode(',', $uppercats);
+	
+	$cat_hierarchy = implode('/', $uppercatsArr);
+	*/
+	return $cat_hierarchy;
+}
 function s3upload_timestamp_filename($fileName, $img_id, $format){
 	// Example: "./upload/2013/03/31/20130331013511-5d467604.jpg"
 	$path = s3upload_get_img_path($img_id);
@@ -110,6 +152,10 @@ function s3upload_timestamp_filename($fileName, $img_id, $format){
 		case 'file_unique':
 			preg_match('#(^\.\/\w+/\d+\/\d+\/\d+/)(\d+-[a-z0-9]+)#i', $path.$fileName, $matches);
 			return $matches[2].'-'.$fileName;
+			break;
+		case 'cat_hierarchy':
+			$cat_hierarchy = s3upload_get_category_hierarchy($img_id);
+			return $cat_hierarchy.$fileName;
 			break;
 		default:
 			//file

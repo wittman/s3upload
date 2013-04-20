@@ -57,6 +57,7 @@ $lang['Add Path'] = 'Add Path';
 $lang['Add Path + File'] = 'Add Path + File';
 $lang['Add File Unique'] = 'Add File Unique';
 $lang['Add Path + File Unique'] = 'Add Path + File Unique';
+$lang['Add Category Hierarchy'] = 'Add Category Hierarchy';
 
 $lang['Required'] = 'Required';
 
